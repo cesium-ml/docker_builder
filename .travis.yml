@@ -1,0 +1,21 @@
+language: python
+dist: trusty
+sudo: required
+services:
+  - docker
+python: 3.6
+addons:
+  apt:
+    packages:
+      - xvfb
+      - chromium-browser
+install:
+  - git clone https://github.com/cesium-ml/cesium_web.git cesium_web
+  - pip install -r cesium_web/requirements.txt
+  - wget http://chromedriver.storage.googleapis.com/2.23/chromedriver_linux64.zip
+  - sudo unzip chromedriver_linux64.zip chromedriver -d /usr/local/bin
+  - rm chromedriver_linux64.zip
+  - which chromium-browser
+  - chromium-browser --version
+script: ./docker_build.sh
+after_success: echo "TODO upload here"
