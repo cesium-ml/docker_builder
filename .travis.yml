@@ -18,4 +18,6 @@ install:
   - which chromium-browser
   - chromium-browser --version
 script: ./docker_build.sh
-after_success: echo "TODO upload here"
+after_success:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push cesium/web
