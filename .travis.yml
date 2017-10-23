@@ -11,6 +11,9 @@ addons:
       - chromium-browser
 install:
   - git clone https://github.com/cesium-ml/cesium_web.git cesium_web
+  - (cd cesium_web && git show | cat)
+  - make -C cesium_web baselayer/README.md
+  - pip install -r cesium_web/baselayer/requirements.txt
   - pip install -r cesium_web/requirements.txt
   - wget http://chromedriver.storage.googleapis.com/2.29/chromedriver_linux64.zip
   - sudo unzip chromedriver_linux64.zip chromedriver -d /usr/local/bin
